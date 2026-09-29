@@ -1,0 +1,6 @@
+>pip freeze
+(para saber tudo o que está instalado nesse ambiente,plugins e versão)
+
+>pip freeze > amb_teste.txt (ou outro caminho e nome de arquivo para guardar essa lista de ambiente em arquivo)
+
+>pip install –r amb_teste.txt (instala esse ambiente fazendo um pip install no ambiente para cada item)
