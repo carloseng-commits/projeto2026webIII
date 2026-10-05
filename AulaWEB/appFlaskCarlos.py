@@ -22,7 +22,7 @@ def saudacao(id):
 @meu_site.route('/')
 @meu_site.route('/index')
 def index():   #esta função está vinculada a rota raíz / e rota /index
-    return render_template('t_index.html') 
+    return render_template('t_index.html', nome ="Turma 2025") 
 
 @meu_site.route('/contato')
 def contato():
@@ -32,7 +32,7 @@ def contato():
 def dados_usuario():
     #nome_usuario="Mariela"
     dados_usu = {"nome": "Mariela", "profissao": "Professora EBTT", "disciplina":"Desenvolvimento Web III"}
-    return render_template("usuario.html", dados = dados_usu)
+    return render_template("t_usuario.html", dados = dados_usu)
                                            #parâmetro recebe argumento
                                            #colocar o site no ar
 
@@ -41,6 +41,9 @@ def dados_usuario2(p_nome, p_profissao, p_disciplina):
     dados_usu = {"nome": p_nome, "profissao": p_profissao, "disciplina": p_disciplina}
     return render_template("usuario.html", dados = dados_usu)
 
+@meu_site.route('/login')
+def login():
+    return render_template("t_login.html")
 
 #esta função não está vinculado a rota, mas pode ser usada dentro de uma rota ou outra função ou invocada de fora
 def saudacaoes(nome): 
