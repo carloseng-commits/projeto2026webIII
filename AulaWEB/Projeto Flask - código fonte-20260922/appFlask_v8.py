@@ -1,29 +1,33 @@
+from pathlib import Path
+
 from flask import Flask, render_template
 from flask import request   #para trabalhar com os métodos GET e POST
 from flask import flash     #para msgs popup
 from flask import redirect  #para redirecionar páginas
 
 
-# os templates coloca em outra pasta. 
-# Por padrão, fica na pasta templates e não precisa informar no template_folder,
-# mas se quiser armazenar em outra pasta indique nesse parâmetro.
-app_carlos = Flask(__name__, template_folder='t_templates') 
+# os templates ficam em uma subpasta do projeto. Definimos o caminho absoluto para
+# evitar erros quando a aplicação é iniciada a partir da pasta raiz do repositório.
+base_dir = Path(__file__).resolve().parent
+template_dir = base_dir / "t_templates"
+
+app_carlos = Flask(__name__, template_folder=str(template_dir))
 # no caso de usar flash pede a configuração de uma chave secreta
 app_carlos.config['SECRET_KEY'] = "palavra-secreta-IFRO"
 
-@app_carlos.route("/")       #se no navegador digitar / ou /index
-@app_carlos.route("/index")  
+@app_carlos.route("/", endpoint="index")       #se no navegador digitar / ou /index
+@app_carlos.route("/index", endpoint="index")  
 def indice():
     return render_template ("t_index.html") 
 
-@app_carlos.route("/contato")
+@app_carlos.route("/contato", endpoint="contato")
 def contato():
     return render_template("t_contato.html") 
 
 #rota /usuarios COM passagem de argumentos
-@app_carlos.route("/usuario/<nome_usuario>;<nome_profissao>")
+@app_carlos.route("/usuario/<nome_usuario>;<nome_profissao>", endpoint="dados_usuario")
 #rota /usuarios SEM passagem de argumentos --> definir valor padrão com defaults
-@app_carlos.route("/usuario", defaults={"nome_usuario":"usuário?","nome_profissao":""})  
+@app_carlos.route("/usuario", defaults={"nome_usuario":"usuário?","nome_profissao":""}, endpoint="dados_usuario")  
 def usuarios (nome_usuario, nome_profissao):
     dados_usu = {"profissao": nome_profissao, "disciplina":"Desenvolvimento Web III"}
     return render_template ("t_usuario.html", nome=nome_usuario, dados = dados_usu)  
