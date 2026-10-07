@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perfil do usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+
+</head>
+<body>
+    
+    <!-- <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="70" height="70"> -->
+    <img class = "imgquadrada" src="{{ url_for('static', filename='img/logoifro.png') }}" alt="Logo" >
+
+    <p style="font-size: 1.0em;" id= "dataHora"></p>
+    <br>
+    <nav>
+        <ul>
+            <a href="{{ url_for('index') }}">Página Inicial</a>
+            <a href="{{ url_for('contato') }}">Contatos</a>
+            <a href="{{ url_for('dados_usuario') }}">Perfil do Usuário</a>
+            <a href="{{ url_for('login') }}">Login</a>
+        </ul>
+    </nav>
+
+    {% block conteudo %}
+
+    {% endblock %}
+    <script src="{{ url_for('static', filename='js/script1.js')}}"> </script>
+
+    <script src="{{ url_for('static', filename='js/script2.js')}}" 
+        onload="mostrarDataHora();"> </script>
+
+
+    <h6>Desenvolvido por: Turma 2025</h6>
+</body>
+</html>
