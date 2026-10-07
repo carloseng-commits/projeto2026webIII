@@ -13,7 +13,7 @@ app_Mariela.config['SECRET_KEY'] = "palavra-secreta-IFRO"
 
 @app_Mariela.route("/")       #se no navegador digitar / ou /index
 @app_Mariela.route("/index")  
-def indice():
+def index():
     return render_template ("t_index.html") 
 
 @app_Mariela.route("/contato")
@@ -24,7 +24,7 @@ def contato():
 @app_Mariela.route("/usuario/<nome_usuario>;<nome_profissao>")
 #rota /usuarios SEM passagem de argumentos --> definir valor padrão com defaults
 @app_Mariela.route("/usuario", defaults={"nome_usuario":"usuário?","nome_profissao":""})  
-def usuarios (nome_usuario, nome_profissao):
+def dados_usuario (nome_usuario, nome_profissao):
     dados_usu = {"profissao": nome_profissao, "disciplina":"Desenvolvimento Web III"}
     return render_template ("t_usuario.html", nome=nome_usuario, dados = dados_usu)  
 
